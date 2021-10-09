@@ -1,0 +1,18 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./social-media-reverseproxy
+    image: reverseproxy
+  backend_user:
+    build:
+      context: ./social-media-api-users
+    image: social-media-api-users
+  backend_post:
+    build:
+      context: ./social-media-api-posts
+    image: social-media-api-posts
+  frontend:
+    build:
+      context: ./social-media-client
+    image: social-media-client:local

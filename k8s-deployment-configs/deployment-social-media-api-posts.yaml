@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-post
+  labels:
+    app: backend-post
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-post
+  template:
+    metadata:
+      labels:
+        app: backend-post
+    spec:
+      containers:
+      - name: social-media-api-posts
+        image: matefkhalaf/social-media-api-posts:latest
+        ports:
+        - containerPort: 9000
+        imagePullPolicy: Always  
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "250m"
+          limits:
+            memory: "3072Mi"
+            cpu: "500m"
+        env:
+        - name: DATABASECONNECTION
+          valueFrom:
+            secretKeyRef:
+              name: social-media-secret
+              key: DATABASECONNECTION 
+        - name: SESSION_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: social-media-secret
+              key: SESSION_SECRET
