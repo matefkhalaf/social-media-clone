@@ -15,18 +15,18 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  #- docker build -t social-media-api-posts ./social-media-api-posts
-  #- docker build -t social-media-api-users ./social-media-api-users
-  #- docker build -t social-media-client ./social-media-client
+  - docker build -t social-media-api-posts ./social-media-api-posts
+  - docker build -t social-media-api-users ./social-media-api-users
+  - docker build -t social-media-client ./social-media-client
   - docker build -t social-media-reverseproxy ./social-media-reverseproxy
-  #- docker tag social-media-api-posts matefkhalaf/social-media-api-posts:latest
-  #- docker tag social-media-api-users matefkhalaf/social-media-api-users:latest
-  #- docker tag social-media-client matefkhalaf/social-media-client:latest
+  - docker tag social-media-api-posts matefkhalaf/social-media-api-posts:latest
+  - docker tag social-media-api-users matefkhalaf/social-media-api-users:latest
+  - docker tag social-media-client matefkhalaf/social-media-client:latest
   - docker tag social-media-reverseproxy matefkhalaf/social-media-reverseproxy:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  #- docker push matefkhalaf/social-media-api-posts:latest
-  #- docker push matefkhalaf/social-media-api-users:latest
-  #- docker push matefkhalaf/social-media-client:latest
+  - docker push matefkhalaf/social-media-api-posts:latest
+  - docker push matefkhalaf/social-media-api-users:latest
+  - docker push matefkhalaf/social-media-client:latest
   - docker push matefkhalaf/social-media-reverseproxy:latest

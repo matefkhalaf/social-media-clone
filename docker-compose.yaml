@@ -8,6 +8,7 @@ services:
       depends_on:
         - backend-user
         - backend-post
+        - frontend
   backend-user:
     image: social-media-api-users
     environment:
@@ -20,5 +21,4 @@ services:
       DATABASECONNECTION: $DATABASECONNECTION 
   frontend:
     image: social-media-client:local
-    ports:
-      - "3000:80"
+
